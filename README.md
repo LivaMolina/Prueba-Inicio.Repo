@@ -136,3 +136,37 @@ sudo apt-get install gitk
 Recuerda que podemos ver gráficamente nuestro entorno y flujo de trabajo local con Git utilizando el comando gitk.<br>
  Gitk fue el primer visor gráfico que se desarrolló para ver de manera gráfica el historial de un repositorio de Git.
 <br>
+
+## CLASE 04 MIÉRCOLES 3 DE SEPTIEMBRE DEL 2025 -
+### Tu primer push
+La creación de las SSH es necesario solo una vez por cada computadora. <br>
+ Aquí conocerás cómo conectar a GitHub usando SSH.<br>
+Luego de crear nuestras llaves SSH podemos entregarle la llave pública a GitHub para comunicarnos de forma segura y sin necesidad de escribir nuestro usuario y contraseña todo el tiempo.<br>
+
+Para esto debes entrar a la Configuración de Llaves SSH en GitHub, crear una nueva llave con el nombre que le quieras dar y el contenido de la llave pública de tu computadora.<br>
+
+Ahora podemos actualizar la URL que guardamos en nuestro repositorio remoto, solo que, en vez de guardar la URL con HTTPS, vamos a usar la URL con SSH:<br>
+
+ssh
+
+> it remote set-url origin url-ssh-del-repositorio-en-github
+
+Comandos para copiar la llave SSH:<br>
+
+### ESTAS SON LAS RUTAS DEL SSH PUBLICO
+```sh
+# -Mac:
+pbcopy < ~/.ssh/id_rsa.pub
+# Windows (Git Bash):
+clip < ~/.ssh/id_rsa.pub
+# Linux (Ubuntu):
+cat ~/.ssh/id_rsa.pub
+```
+* Importante
+Las buenas costumbres nos enseñan que antes de hacer un push, siempre debemos hacer un pull, un fetch, esto para que si alguien ya hizo algún cambio, no se genere un conflicto.<br>
+* Invitar a un colaborador<br>
+Para invitar a un colaborador debemos ir a GitHub y seleccionar:<br>
+
+> setting -> colaborators -> ingresar contraseña o un F2A de verificación y enviar la invitación escribiendo el nombre de usuario.
+
+Del otro lado el usuario invitado solo debe aceptar y listo, ya puede participar del proyecto haciendo commit.<br>
