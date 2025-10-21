@@ -108,3 +108,31 @@ git push origin main #Pasamos todo lo hecho a GitHub, revisar en el repositorio 
 ```
 
 Frente al cambio de nombre de rama master a main, suele suceder que en el repo de GitHub se hayan creado dos ramas, la rama master y la rama main, se debe ir al repo, settings y ahí se puede cambiar la rama principal, en vez de que siga siendo master, que sea la rama main, luego de eso ya podemos borrar la rama master.
+
+## CLASE 03 MIÉRCOLES 27 DE AGOSTO DEL 2025 -
+Cambios en GitHub: de master a main<br>
+¿Cuando es que sigue siendo master y cuando sigue siendo main?<br>
+Cuando se crea un repositorio desde git bash en nuestro ordenador a través de git init, sigue siendo el estandar como master. <br>¿Qué hacer con esto? Debes cambiar el nombre de la rama master a main con el comando:<br>
+```sh
+git branch -M main
+# O cambiando la asignación por default con este otro comando:
+git config --global init.defaultBranch main
+```
+A partir de este comando siempre que ingreses git init será la rama main.<br>
+Ahora cuando creamos un repositorio desde la nube, osea desde GitHub, ya verás que la rama principal tiene por default el nombre de main y al clonar a nuestro ordenador seguira teniendo este nombre y no será necesario ningun cambio.<br>
+
+```sh
+# Otro comando que deben saber es:
+gitk
+```
+Si no te funciona el comando gitk es posible no lo tengas instalado por defecto.<br>
+
+```sh
+# Para instalar gitk debemos ejecutar los siguientes comandos:
+sudo apt-get update
+sudo apt-get install gitk
+```
+
+Recuerda que podemos ver gráficamente nuestro entorno y flujo de trabajo local con Git utilizando el comando gitk.<br>
+ Gitk fue el primer visor gráfico que se desarrolló para ver de manera gráfica el historial de un repositorio de Git.
+<br>
