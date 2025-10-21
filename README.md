@@ -19,7 +19,7 @@ Cómo se copia la ssh
 cd Documents/Repositorios
 mkdir Proyectos
 cd Proyectos
-git clone git@github.com:ArielBetancud22/Prueba-Inicio-Repo.git
+git clone git@github.com:LivaMolina/Prueba-Inicio.Repo.git
 cd Prueba-Inicio-Repo
 git pull origin main
 git status
