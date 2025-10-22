@@ -266,3 +266,78 @@ git push origin --delete v1.0 # Ejemplo con etiqueta v1.0
 ```
 > En resumen, las etiquetas en Git son esenciales para asignar versiones y capturar instantáneas importantes en el historial de un proyecto. Aprender a crear, listar, compartir y eliminar etiquetas mejorará tu flujo de trabajo con Git.
 
+## CLASE 06-A MIÉRCOLES 24 DE SEPTIEMBRE DEL 2025
+### Error con los tags
+
+#### Investigación:
+¿Qué pasa si por error cargamos un tag dos veces?
+¿Cómo solucionarías este problema o error?
+
+## Error de duplicado de tags en Git
+
+¿Un tag se puede generar dos veces?<br>
+
+No. En el repositorio local, Git no te deja crear dos veces el mismo nombre de *tag*. Si
+intentás, te da error:<br>
+
+• fatal: tag 'v1.0' already exists<br>
+
+¿Por qué aparece el error de “dos tags con el mismo nombre”?<br>
+
+El problema no está en la PC, sino cuando hay dos definiciones diferentes del mismo
+tag en contextos distintos:<br>
+Local vs. remoto:<br>
+
+• En tu PC tenés `v1.0` apuntando a un commit.<br>
+• En el remoto (GitHub, GitLab) alguien creó también `v1.0` pero apuntando a otro
+commit.<br>
+• Cuando hacés `git push --tags`, Git detecta el choque y dice: “hay dos tags
+distintos con el mismo nombre”.<br>
+
+Entre distintas personas del equipo:<br>
+• Cada uno pudo haber creado un tag con el mismo nombre pero sobre commits
+diferentes.<br>
+• Al subirlos al mismo remoto, se genera la colisión.<br>
+
+Tipos distintos de tag:<br>
+• Uno pudo ser ligero y otro anotado, ambos con el mismo nombre.<br>
+• Aunque se llamen igual, Git los trata como objetos diferentes.<br>
+
+Ejemplo paso a paso en consola<br>
+En PC 1:
+# Hacés un commit
+git commit -m "Mi versión estable"
+# Creás el tag v1.0
+git tag v1.0
+# Subís el tag al remoto
+git push origin v1.0
+Ahora en GitHub existe `v1.0` apuntando a tu commit.
+En la PC 2:
+# Hace otro commit distinto
+git commit -m "Otra versión estable"
+# También crea un tag con el mismo nombre
+git tag v1.0
+# Intenta subirlo
+git push origin v1.0
+Git responde:
+! [rejected] v1.0 -> v1.0 (already exists)
+error: failed to push some refs to 'github.com:repo.git'
+
+¿Qué pasó?<br>
+• En local de PC 2 : `v1.0` apunta a su commit.
+• En remoto: `v1.0` ya existe, apuntando al PC 1.
+• Git detecta que son dos tags diferentes con el mismo nombre → conflicto.
+
+### Solución<br>
+PC 2 debe borrar el tag local y recrearlo, o bien coordinar con vos qué commit debe
+llevar el nombre `v1.0`.
+### Ejemplo para borrar y recrear:
+```sh
+git tag -d v1.0 # Borrar tag local
+git fetch origin --tags # Traer el correcto del remoto
+# Si el tag remoto estaba mal y hay que corregirlo:
+git tag -d v1.0
+git tag v1.0 <commit_correcto>
+git push origin :refs/tags/v1.0 # Borrar en remoto
+git push origin v1.0 # Subir tag correcto
+```
