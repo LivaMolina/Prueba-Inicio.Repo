@@ -170,3 +170,99 @@ Para invitar a un colaborador debemos ir a GitHub y seleccionar:<br>
 > setting -> colaborators -> ingresar contraseña o un F2A de verificación y enviar la invitación escribiendo el nombre de usuario.
 
 Del otro lado el usuario invitado solo debe aceptar y listo, ya puede participar del proyecto haciendo commit.<br>
+
+## CLASE 05 MIÉRCOLES 10 DE SEPTIEMBRE DEL 2025
+### Git tag y versiones en GitHub
+
+En Git, las etiquetas o Git tags tienen un papel importante al asignar versiones a los commits más significativos de un proyecto. Aprender a utilizar el comando git tag, entender los diferentes tipos de etiquetas, cómo crearlas, eliminarlas y compartirlas, es esencial para un flujo de trabajo eficiente.
+
+### Creación de etiquetas en Git
+
+```sh
+git tag
+
+```
+Sustituye con un identificador semántico que refleje el estado del repositorio en el momento de la creación. Git admite etiquetas anotadas y ligeras.<br>
+
+### Listado de etiquetas
+Para obtener una lista de etiquetas en el repositorio, ejecuta el siguiente comando:
+```sh
+git tag # Muestra las etiquetas
+git show-ref --tags # Muestra etiquetas con más detalle Te muestra el hash del commit y el nombre de cada etiqueta.
+
+```
+### Para crear una etiqueta, ejecuta el siguiente comando:
+```sh
+git tag nombre_del_tag
+git tag v1.0 # Ejemplo
+* Crear una etiqueta anotada (recomendada)
+git tag -a nombre_del_tag -m "mensaje descriptivo"
+git tag -a v1.0 -m "Versión inicial del proyecto" # Ejemplo
+# Esto queda registrado en el historial con detalles y se puede consultar más tarde con git show v1.0.
+```
+Las etiquetas anotadas almacenan información adicional como la fecha, etiquetador y correo electrónico, y son ideales para publicaciones públicas. <br>
+Las etiquetas ligeras son más simples y se emplean como “marcadores” de una confirmación específica.<br>
+### Etiquetar un commit anterior: Si querés marcar un commit viejo (no el último), podés hacerlo usando su hash:
+```sh
+git tag -a v0.9 1a2b3c4d -m "Versión anterior" # Reemplazá 1a2b3c4d por los primeros dígitos del hash del commit, que ves con git log
+
+git show-ref --tags # Muestra etiquetas con más detalle Te muestra el hash del commit y el nombre de cada etiqueta.
+
+```
+### Subir la etiqueta a GitHub
+Por defecto, las etiquetas no se suben con git push, tenés que hacerlo explícitamente:<br>
+```sh
+git push origin v1.0 # Subir una etiqueta específica:
+
+git push origin --tags # Subir todas las etiquetas:
+
+
+git tag
+
+* Esto mostrará una lista de las etiquetas existentes, como:
+
+v1.0
+
+v1.1
+
+v1.2
+```
+Para perfeccionar la lista, puedes utilizar opciones adicionales, como -l con una expresión comodín.<br>
+* Qué es una expresión comodín: una expresión comodín (wildcard) usa el símbolo * para representar “cualquier conjunto de caracteres”.<br>
+
+Por ejemplo:<br>
+v1.* → todas las etiquetas que empiecen con v1.
+
+*beta* → todas las etiquetas que contengan la palabra “beta”.
+
+release-* → todas las etiquetas que empiecen con “release-”.
+```sh
+Ejemplo 
+git tag -l "v1.*" # Mostrar todas las etiquetas que comienzan con “v1.”
+git tag -l "*beta*" # Mostrar solo las que contienen la palabra “beta”
+git tag -lv # Mostrar todas las etiquetas (equivalente a git tag)
+```
+
+### Uso compartido de etiquetas
+
+Compartir etiquetas requiere un enfoque explícito al usar el comando git push. Por defecto, las etiquetas no se envían automáticamente. Para enviar etiquetas específicas, utiliza:<br>
+
+git push origin<br>
+
+Para enviar varias etiquetas a la vez, usa: <br>
+
+git push origin --tags<br>
+
+
+### Eliminación de etiquetas
+Para eliminar una etiqueta, usa el siguiente comando:<br>
+```sh
+> Localmente
+git tag -d
+git tag -d v1.0 #Ejemplo 
+# Esto eliminará la etiqueta identificada por en el repositorio local.
+> Una vez subida a Git Hub
+git push origin --delete v1.0 # Ejemplo con etiqueta v1.0
+```
+> En resumen, las etiquetas en Git son esenciales para asignar versiones y capturar instantáneas importantes en el historial de un proyecto. Aprender a crear, listar, compartir y eliminar etiquetas mejorará tu flujo de trabajo con Git.
+
