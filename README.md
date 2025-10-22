@@ -455,5 +455,20 @@ git fetch
 git log --stat #Se verá claro que el colaborador ingreso su primer commit
 # 10. A partir de ahora el dueño del repositorio y el colaborador deberán repartir el trabajo, esto se hace con distintas ramas de trabajo: el dueño trabajará desde la rama header y el colaborador desde la rama footer, al final cuando se termine, se hara un merge para terminar el proyecto.
 ```
+## CLASE 10 MIÉRCOLES 15 DE OCTUBRE DEL 2025 - Portafolio 10
+
+Flujo de trabajo profesional<br>
+Haciendo merge de ramas de desarrollo a main<br>
+Para poder desarrollar software de manera óptima y ordenada, necesitamos tener un flujo de trabajo profesional, que nos permita trabajar en conjunto sin interrumpir el trabajo de otros desarrolladores.<br>
+
+Una buena práctica de flujo de trabajo sería la siguiente:<br>
+
+* 1- Crear ramas
+* 2- Asignar una rama a cada programador
+* 3- El programador baja el repositorio con git pull origin master
+* 4- El programador cambia de rama
+* 5- El programador trabaja en esa rama y hace commits
+* 6- El programador sube su trabajo con git push origin #nombre_rama
+* 7- El encargado de organizar el proyecto baja, revisa y unifica todos los cambios
 
 
